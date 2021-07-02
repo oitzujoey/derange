@@ -14,11 +14,11 @@ set(CMAKE_AUTOUIC ON)
 
 find_package(Qt6 COMPONENTS Widgets REQUIRED)
 
-add_executable(derange src/main.cpp)
+add_executable(derange src/main.cpp src/editor.cpp src/editor.h ui/editor.ui)
 
 target_link_libraries(derange PUBLIC Qt6::Widgets)
 
-configure_file(src/config.h.in src/config.h)
+configure_file(src/config.h.in config.h)
 
 target_include_directories(derange PUBLIC "${PROJECT_BINARY_DIR}")
 

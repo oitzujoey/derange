@@ -1,2 +1,2 @@
-#define derange_MAJOR_VERSION   0
-#define derange_MINOR_VERSION   0
+#define derange_MAJOR_VERSION   @derange_VERSION_MAJOR@
+#define derange_MINOR_VERSION   @derange_VERSION_MINOR@

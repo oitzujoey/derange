@@ -1,2 +1,2 @@
 # Derange
-A deranged attempt at an editor
+A deranged attempt at a text editor

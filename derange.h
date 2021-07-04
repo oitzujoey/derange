@@ -22,7 +22,10 @@ private slots:
 
     void on_actionSave_as_triggered();
 
+    void on_actionNew_triggered();
+
 private:
     Ui::derange *ui;
+    QString currentFile;
 };
 #endif // DERANGE_H

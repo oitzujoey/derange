@@ -18,9 +18,9 @@ derange::~derange()
 
 void derange::on_actionOpen_triggered()
 {
-    QString fileName = QFileDialog::getOpenFileName(this, "Open the file");
+    QString fileName = QFileDialog::getOpenFileName(this, "Open");
     QFile file(fileName);
-    QString currentFile = fileName;
+    currentFile = fileName;
     if (!file.open(QIODevice::ReadOnly | QFile::Text)) {
         QMessageBox::warning(this, "Warning", "Cannot open file: " + file.errorString());
         return;
@@ -35,12 +35,48 @@ void derange::on_actionOpen_triggered()
 
 void derange::on_actionSave_triggered()
 {
-
+    QString fileName;
+    if (currentFile.isEmpty()) {
+        fileName = QFileDialog::getOpenFileName(this, "Save");
+        currentFile = fileName;
+    }
+    else {
+        fileName = currentFile;
+    }
+    QFile file(fileName);
+    if (!file.open(QIODevice::WriteOnly | QFile::Text)) {
+        QMessageBox::warning(this, "Warning", "Cannot save file: " + file.errorString());
+        return;
+    }
+    setWindowTitle(fileName);
+    QTextStream out(&file);
+    QString text = ui->textEdit->toPlainText();
+    out << text;
+    file.close();
 }
 
 
 void derange::on_actionSave_as_triggered()
 {
+    QString fileName = QFileDialog::getOpenFileName(this, "Save");
+    currentFile = fileName;
+    
+    QFile file(fileName);
+    if (!file.open(QIODevice::WriteOnly | QFile::Text)) {
+        QMessageBox::warning(this, "Warning", "Cannot save file: " + file.errorString());
+        return;
+    }
+    setWindowTitle(fileName);
+    QTextStream out(&file);
+    QString text = ui->textEdit->toPlainText();
+    out << text;
+    file.close();
+}
 
+
+void derange::on_actionNew_triggered()
+{
+    currentFile.clear();
+    ui->textEdit->setText(QString());
 }
 
